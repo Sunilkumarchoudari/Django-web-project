@@ -1,0 +1,86 @@
+<section class='py-4 text-justify container'>
+        <h3 class='text-uppercase'>Problem Solving</h3>
+        <div class='text-dark'>
+        <p>
+            <p>
+            Solving any DeepLearning problem without following any approch may not work always. Deploying the model simply by training the model with some layers after evaluates to better accuracy may not work at as expected in production time. 
+            </p>
+            <blockquote class='blockquote'>
+                80% of the ML Projects fail at production time.
+            </blockquote>
+            <p>
+            It sounds weird but its true, around 80% of ML projects fail in real time. There may be many reasons for that and one of the reason for that would be having a litte or zero knowledge on how and why the model is performing so, at the developemnt stage. In Artificial Neural Network (ANN) / Deep Neural Network (DNN) there would be many number of neurons, and each neuron is going to contirbute something to the model that decides the model perfomance. There are many parameters for a neural network which include number of layers, Number of neurons in each layer, activation, for convolutional neural networks include number of filters, filter size, stride, padding, and optimizers, learning rate, loss function so called hyperparameters. The choice of hyperparameters are orbitary and user need to define them before starting training, and hence orbitary number of possibilities to comeup with to a single problem. There would be many ways a single problem can be solved but, we must come up with the optimal model that generalize well.
+            </p>
+            <p>
+            It is always better to follow some method/procedure in solving DL problems. But here comes the question, Which method to follow? There was a traditional way of solving ML and DL problems. This involves the following steps:
+                <ol class='w-75 mx-auto'>
+                    <li>Data Collection</li>
+                    <li>Data Preparation</li>
+                    <li>Choose a Model</li>
+                    <li>Train the Model</li>
+                    <li>Evaluate the Model</li>
+                    <li>Model Tuning</li>
+                    <li>Make Predictions/Deploy</li>
+                </ol>
+            </p>
+            <p>
+            You all might also have a doubt in your mind that what were the best hyperparameters to choose for my model? If you google about the best choice of hyperparameters, you would most probably land on the answers like :
+            <!-- Solving any Machine learning problem involves the following steps: -->
+            <ol class='w-75 mx-auto'>
+                <li>
+                    <span class='lead'>Manual Search:</span> Using knowledge you have about the problem guess parameters and observe the result. Based on that result tweak the parameters. Repeat this process until you find parameters that work well or you run out of time.
+                </li>
+                <li>
+                    <span class='lead'>Grid Search:</span> Using knowledge you have about the problem identify ranges for the hyperparameters. Then select several points from those ranges, usually uniformly distributed. Train your network using every combination of parameters and select the combination that performs best. Alternatively you can repeat your search on a more narrow domain centered around the parameters that perform the best.
+                </li>
+                <li>
+                    <span class='lead'>Random Search:</span> Like grid search you use knowledge of the problem to identify ranges for the hyperparameters. However instead of picking values from those ranges in a methodical manner you instead select them at random. Repeat this process until you find parameters that work well or use what you learn to narrow your search. In the paper Random Search for Hyper-Parameter Optimization Dr. Bengio proposes this be the baseline method against which all other methods should be compared and shows that it tends to work better than the other methods.
+                </li>
+                <li>
+                    <span class='lead'>Bayesian Optimization:</span> More recent work has been focus on improving upon these other approaches by using the information gained from any given experiment to decide how to adjust the hyper parameters for the next experiment. An example of this work would be Practical Bayesian Optimization of Machine Learning Algorithms by Adams et al.
+                </li>
+            </ol>
+            </p>
+            
+            <p>
+                All the above methods will do is to search for the best hyperparameter value provided the range of values of hyperparameters. We can use any of them for finding the best values of hyperparameters for our model. But for now, I would like to go for manual search. I would like to set some hyperparameters values and train the model and evaluate the results and repet.
+            </p>
+            <p>
+                Now, It's enough talking.
+            </p>
+        </p>
+        <div class="ftco-section" id="cards">
+            <h4>Step 1:</h4>
+            <p> The very first step is to collect the data. Here is the source and the description of the dataset.</p>
+			<div class="" style="width:60%;margin:auto;">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card bg-info">
+						  <div class="card-body pb-5 px-4">
+						    <h5 class="card-title text-uppercase">Dataset Description</h5>
+						    <p class="card-text text-white">
+                                Source : <a href="https://www.kaggle.com/c/digit-recognizer" class='text-white'>Kaggle</a>
+                                <br>
+                                File Type: CSV
+                                <br>
+                                Category : Computer Vision,Deep Learning
+                                <br>
+                                Train Samples : 42000
+                                <br>
+                                Test Samples : 28000
+                                <br>
+                                Dimentions : 28x28 (784)
+                                <br>  
+                            </p>
+						  </div>
+						</div>
+					</div>
+				</div>
+            </div>
+            <h4>Step 2:</h4>
+            <p>
+                After collecting data, next step is to go for preprocessing the data. So that we need to understand the data destribution as much as possible.
+            </p>
+        </div>
+	</div>
+    </section>

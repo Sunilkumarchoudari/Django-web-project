@@ -1,0 +1,8 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+{% for k in models_loaded %}
+    <h1>{{k}}</h1>
+    <br>
+{% endfor %}
+{% endblock %}

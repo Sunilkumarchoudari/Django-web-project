@@ -1,0 +1,25 @@
+<body>
+    <canvas id="canvas" width="500" height="500" style="border: 1px solid black" />
+
+<script>
+    var canvas = document.getElementById('canvas');
+var image = new Image();
+image.src = 'http://placehold.it/300x550';
+sleep(1000);
+image.onload = function () {
+    var canvasContext = canvas.getContext('2d');
+    var wrh = image.width / image.height;
+    var newWidth = canvas.width;
+    var newHeight = newWidth / wrh;
+    if (newHeight > canvas.height) {
+                newHeight = canvas.height;
+        newWidth = newHeight * wrh;
+      }
+    var xOffset = newWidth < canvas.width ? ((canvas.width - newWidth) / 2) : 0;
+    var yOffset = newHeight < canvas.height ? ((canvas.height - newHeight) / 2) : 0;
+
+      canvasContext.drawImage(image, xOffset, yOffset, newWidth, newHeight);
+  };
+</script>
+
+</body>

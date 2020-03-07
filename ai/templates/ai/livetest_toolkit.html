@@ -1,0 +1,198 @@
+{% extends 'ai/dl_base.html' %}
+{% load static %}
+
+{% block javascript %}
+
+{% if testing_type == 'drawing_test' %}
+<script>
+    window.addEventListener('load',()=> {
+      canvas = document.querySelector("#canvas");
+      ctx = canvas.getContext("2d");
+      resize();
+      let painting = false;
+
+      function startpaint(e) {
+        painting = true;
+        draw(e);
+      }
+      function stoppaint() {
+        painting = false;
+        ctx.beginPath();
+      }
+      function draw(e){
+        if(!painting) return;
+        var rect = canvas.getBoundingClientRect();
+        ctx.lineWidth = 10;
+        ctx.lineCap = 'round';
+        ctx.fillStyle = 'black';
+        ctx.lineTo(e.clientX- (rect.left),e.clientY- (rect.top));
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(e.clientX-(rect.left),e.clientY-(rect.top));
+      }
+      function getImageData(){
+        var w = canvas.width;
+        var h = canvas.height;
+        var data = ctx.getImageData(0, 0, w, h);
+        var compositeOperation = ctx.globalCompositeOperation;
+        ctx.globalCompositeOperation = "destination-over";
+        ctx.fillStyle = "#fff";
+        ctx.fillRect(0,0,w,h);
+        var imageData = canvas.toDataURL("image/png",1.0);
+        ctx.clearRect (0,0,w,h);
+        ctx.putImageData(data, 0,0)      
+        ctx.globalCompositeOperation = compositeOperation;
+        return imageData;
+      }
+      function predictionsFromServer(){
+        $.ajax({
+          url: "livedata/image",
+          method: "POST",
+          headers: {'X-CSRFToken': '{{ csrf_token }}'},
+          data: {'IMAGEDATA':getImageData(),'project_title':'{{project_title}}','projectID':'{{projectID}}','center_img':true,'testing_type':'{{testing_type}}'},
+          dataType: "json"
+        }).done(function(response) {
+          console.log("Success");
+          document.getElementById('prediction').innerHTML = "Prediction : "+response['prediction'];
+          for(i=0; i<Object.keys(response['percentages']).length;i++){
+            document.getElementById("prediction-progressbar"+i).style.width= response['percentages'][i]+"%";
+            document.getElementById("prediction-progressbar-text"+i).innerHTML= response['percentages'][i]+"%";
+          }
+        }).fail(function (error) {
+          document.getElementById('prediction').innerHTML = "Server Error";
+        });
+      }
+      
+      canvas.addEventListener('mousedown',startpaint);
+      canvas.addEventListener('mouseup',()=>{
+        stoppaint();
+        predictionsFromServer();
+      });
+      canvas.addEventListener('mouseout',stoppaint);
+      canvas.addEventListener('mousemove',draw);
+    })
+    function resize(){
+      canvas.height = 200;
+      canvas.width = 200;
+    }
+    function clearcanvas(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  </script>
+
+{% elif testing_type == 'image_test' %}
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#uploaded_image')
+                    .attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    function randomImage(){
+        alert("Not Implemented!!!Please Upload Your Own Image");
+    }
+  function predictionsFromServer(){
+    $.ajax({
+      url: "livedata/image",
+      method: "POST",
+      headers: {'X-CSRFToken': '{{ csrf_token }}'},
+      data: {'IMAGEDATA':document.getElementById('uploaded_image').src,'project_title':'{{project_title}}','projectID':'{{projectID}}','testing_type':'{{testing_type}}'},
+      dataType: "json"
+    }).done(function(response) {
+      console.log("Success");
+      document.getElementById('prediction').innerHTML = "Prediction : "+response['prediction'];
+      document.getElementById('prediction_percentage').innerHTML = "Percentage : "+response['prediction_percentage']+" %";
+    }).fail(function (error) {
+      document.getElementById('prediction').innerHTML = "Server Error";
+    });
+  }
+    </script>
+{% elif testing_type == 'audio_test' %}
+
+{% elif testing_type == 'video_test' %}
+
+{% elif testing_type == 'webcam_test' %}
+
+{% elif testing_type == 'microphone_test' %}
+
+{% elif testing_type == 'text_area_test' %}
+
+{% endif %}
+
+{% endblock %}
+
+
+
+
+
+
+
+{% block content %}
+{% if testing_type == 'drawing_test' %}
+<div class="col-12 col-sm-6 col-md-6 col-lg-4 mt-5">
+    <div class="text-center my-5">
+        <canvas id="canvas" class='m-0'></canvas>
+        <br>
+        <button class="btn btn-danger p-2 px-3 mx-5 my-1" onclick="clearcanvas()">Clear</button>
+    </div>
+</div>
+<div class="col-12 col-sm-6 col-md-6 col-lg-4">
+    <h3 id='prediction'>Prediction : </h3>
+    <div class="" style="width:300px;height:300px;border:black 2px solid;" >
+        {% for i in classes %}
+            <div class="row" style="margin: 1px 10px 0 0;">
+                <div class="col-1">
+                    {{i}}
+                </div>
+                <div class="col-10" style="border:black 0px solid;">
+                    <div class="progress bg-white" style="height: 20px;border-radius:0 !important;margin:4px -15px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" id="prediction-progressbar{{i}}" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{j}}%;">
+                            <span class='small' id='prediction-progressbar-text{{i}}'></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% elif testing_type == 'image_test' %}
+
+    <div class="col-12 col-sm-6 col-md-6 col-lg-4 mt-5">
+    <div class="my-5 text-center">
+        <input type="file" accept="image/*" name="" id="" onchange="readURL(this);" class="btn btn-info my-1">
+        <button class="btn btn-danger my-1" onclick="randomImage()">Random Image</button>
+    </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+        <h3 id='prediction' class="m-0">Prediction : </h3>
+        <label id='prediction_percentage' class="m-0">Percentage: </label>
+        <img src="" onload="predictionsFromServer()" alt="" id="uploaded_image" style="width:300px;height:300px; min-width: 300px;min-height:300px;border:black 2px solid;">
+    </div>
+
+{% elif testing_type == 'audio_test' %}
+
+    <h1>audio_test</h1>
+
+{% elif testing_type == 'video_test' %}
+
+    <h1>video_test</h1>
+
+{% elif testing_type == 'webcam_test' %}
+
+    <h1>webcam_test</h1>
+{% elif testing_type == 'microphone_test' %}
+
+    <h1>microphone_test</h1>
+
+{% elif testing_type == 'text_area_test' %}
+
+    <h1>TextArea_test</h1>
+
+{% endif %}
+
+{% endblock %}

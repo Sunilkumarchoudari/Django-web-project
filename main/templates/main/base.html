@@ -1,0 +1,155 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% if title %}
+        <title>{{title}}</title>
+    {% else %}
+        <title>HowItWorks</title>
+    {% endif %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
+		
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datetimepicker.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nouislider.css' %}">
+
+    
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+    
+    <style type='text/css'>
+        .card-flip > div {
+            backface-visibility: hidden;
+            transition: transform 300ms;
+            transition-timing-function:linear;
+            width: 100%;
+            height: 400px;
+            margin: 0px;
+            display: flex;
+          }
+          
+          .card-front {
+            transform: rotateY(0deg);
+          }
+          
+          .card-back {
+            transform: rotateY(180deg);
+            position: absolute;
+            top: 0;
+          }
+          
+          .card-flip:hover .card-front {
+            transform: rotateY(-180deg);
+          }
+            
+          .card-flip:hover .card-back {
+            transform: rotateY(0deg);
+          }
+            </style>
+        
+
+
+
+
+</head>
+<body>
+    
+    <div class="main-section">
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+            <div class="container">
+              <a class="navbar-brand" href="{% url 'home_page' %}">Welcome to AI</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+              </button>
+              <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="{% url 'home_page' %}" class="nav-link icon d-flex align-items-center">Home</a></li>
+                  <li class="nav-item"><a href="{% url 'ai_page' %}" class="nav-link icon d-flex align-items-center">AI</a></li>
+                  <li class="nav-item"><a href="{% url 'robotics_page' %}" class="nav-link icon d-flex align-items-center">Model1</a></li>
+                  <li class="nav-item"><a href="{% url 'physics_page' %}" class="nav-link icon d-flex align-items-center">Model2</a></li>
+                  <li class="nav-item"><a href="{% url 'contact_page' %}" class="nav-link icon d-flex align-items-center">Contact Me</a></li>
+                  <li class="nav-item"><a href="{% url 'about_page' %}" class="nav-link icon d-flex align-items-center">About Me</a></li>
+                  <li class="nav-item cta"><a href="#" class="nav-link icon d-flex align-items-center">Signup/Login</a></li>
+                </ul>
+              </div>
+              </div>
+          </nav>
+        <!-- END nav -->
+
+        <section class="hero-wrap" style="background-image: url({%  static 'images/bgimage.jpg' %})" data-stellar-background-ratio="0.5">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row description align-items-center justify-content-center">
+                    <div class="col-md-8 text-center">
+                        <div class="text">
+                            <h2 class="mb-5">
+                                <!--{% for welcome_message in welcome_messages %}
+                                    {{welcome_message}}
+                                    <br>
+                                {% endfor %} -->
+                            </h2>
+                            <!-- <div class="designed d-inline-block">
+                                <d class="d-flex align-items-center">
+                                    <div class="img" style="background-image: url(images/person.jpg);"></div>
+                                    <div class="ml-3"></div>
+                                </d>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </section>
+          {% block content %}
+
+          {% endblock %}
+      <footer class="ftco-section ftco-section-2 bg-light">
+        <div class="col-md-12 text-center">
+        <p class="mb-0">
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          Copyright &copy;<script>
+            document.write(new Date().getFullYear());
+
+          </script> All rights reserved |<i class="" aria-hidden="true"></i> by howitworks.com <a href="" target="_blank"></a>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        </p>
+      </div>
+    </footer>
+
+
+
+
+    </div>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/aos.js' %}"></script>
+
+    <script src="{% static 'js/nouislider.min.js' %}"></script>
+    <script src="{% static 'js/moment-with-locales.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

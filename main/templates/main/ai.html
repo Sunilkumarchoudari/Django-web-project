@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid">
+<div class="container py-3">
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-sm-6 col-md-6 col-lg-4 my-4">
+            <div class="card card-flip rounded shadow-lg">
+                <div class="card-front">
+                    <div class="">
+                        <img src="{{post.post_image_address.url}}" alt="POST IMAGE" style="width:100% ;height:70%;">
+                        <h4 class="my-3 px-2 card-title ">{{post.post_title}}</h4>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+                <div class="card-back bg-success">
+                    <div class="card-body">
+                        <h3 class="">Results</h3>
+                        <p class="text-white">
+                            Training Accuracy : {{post.post_url.model_training_acc}}
+                            <br>
+                            Training Loss : {{post.post_url.model_training_loss}}
+                            <br>
+                            Validation Accuracy : {{post.post_url.model_valid_acc}}
+                            <br>
+                            Validation Loss : {{post.post_url.model_valid_loss}}
+                            <br>
+                            Testing Accuracy : {{post.post_url.model_testing_acc}}
+                            <br>
+                            Testing Loss : {{post.post_url.model_testing_loss}}
+                            <br>
+                        </p>
+                        <a href="ai/{{post.post_url.id}}" class="btn btn-info">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+{% endblock %}

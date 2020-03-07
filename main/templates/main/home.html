@@ -1,0 +1,58 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="ftco-section bg-light" id="cards">
+<div class="container card-styles">
+<div class="row">
+<div class="col-md-4">
+  <div class="card">
+    <div class="icon-wrap px-4 pt-4">
+      <!-- <div class="icon d-flex justify-content-center align-items-center bg-info rounded-circle">
+        <span class="ion-logo-ionic text-light"></span>
+      </div> -->
+      <img src="{% static 'images/cr4.png' %}" width="75px">
+    </div>
+    <div class="card-body pb-5 px-4">
+      <h5 class="card-title">ML/DL/AI</h5>
+      <p class="card-text text-justify">Artificial Intelligence is an approach to make a computer, a robot, or a product to think how smart human think, Machine Learning and Deep learning are the sub parts of AI. Here are the projects that uses ML and DL approches.</p>
+      <a href="{% url 'ai_page' %}" class="btn btn-info">Explore</a>
+    </div>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="card">
+    <div class="icon-wrap px-4 pt-4">
+      <!-- <div class="icon d-flex justify-content-center align-items-center bg-success rounded-circle">
+        <span class="ion-logo-ionic text-light"></span>
+      </div> -->
+      <img src="{% static 'images/cr5.png' %}" width="75px">
+    </div>
+    <div class="card-body pb-5 px-4">
+      <h5 class="card-title">Robotics</h5>
+      <p class="card-text text-justify">This branch deals with the design, construction, use to control robots, sensory feedback and information processing. These are some technologies which will replace humans and human activities in coming years.Here are the projects for Robotics.</p>
+      <a href="{% url 'robotics_page' %}" class="btn btn-success">Explore</a>
+    </div>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="card">
+    <div class="icon-wrap px-4 pt-4">
+      <!-- <div class="icon d-flex justify-content-center align-items-center bg-warning rounded-circle">
+        <span class="ion-logo-ionic text-light"></span>
+      </div> -->
+      <img src="{% static 'images/cr6.png' %}" width="75px">
+    </div>
+    <div class="card-body pb-5 px-4">
+      <h5 class="card-title">Physics</h5>
+      <p class="card-text text-justify">Living and non-living things in this universe including planets,stars,galaxies follow physics laws. Physics is the study of energy and matter in space and time and how they are related to each other. Here are some posts that explaining the fundamental concepts of physics.</p>
+      <a href="{% url 'physics_page' %}" class="btn btn-warning">Explore</a>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</section>
+<!-- - - - - -end- - - - -  -->
+
+{% endblock %}

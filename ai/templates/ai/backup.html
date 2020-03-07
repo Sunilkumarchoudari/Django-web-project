@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div class="container my-4">
+    <h3>Avaliable Backups</h3>
+    <div class="container">
+        <ul>
+            {% for project in projects%}
+                <li><a href="{{project.id}}/backup" class="text-info">{{project}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
