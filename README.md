@@ -1,13 +1,14 @@
-# howitworksweb
+# howitworksweb based on cnn
 Django web project
 
 
 
 
+Save the text as Requirements.txt
 
 ####################
 
-pip3 freeze requirements.txt
+Run the command : pip3 freeze requirements.txt
 ---------------------------
 
 
