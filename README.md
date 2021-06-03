@@ -4,7 +4,7 @@ Django web project
 
 
 
-Save the text as Requirements.txt
+Save the text as requirements.txt
 
 ####################
 
